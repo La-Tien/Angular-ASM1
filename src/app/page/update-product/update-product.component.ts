@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IProduct } from 'src/app/interface/products';
-import { ProductService } from 'src/app/services/product.service';
+import { ProductsService } from 'src/app/Services/products.service';
+import { IProduct } from 'src/app/interface/product';
 
 @Component({
   selector: 'app-update-product',
@@ -13,25 +13,23 @@ export class UpdateProductComponent {
     name: "",
     price: 0
   }
-  constructor(private productService: ProductService,
-    private route: ActivatedRoute) {
-    this.route.paramMap.subscribe(param => {
-      const id = Number(param.get('id'))
-      this.productService.get(id).subscribe(product => {
-        this.products = product
-      }, error=>{
-        console.log(error);
-        
-      }
-      )
+
+  constructor(
+    private productService: ProductsService,
+    private route: ActivatedRoute
+  ) {
+   this.route.paramMap.subscribe(param =>{
+    const id = Number(param.get('id'));
+    this.productService.getOne(id).subscribe(product => {
+      this.products = product
     })
+   })
     
   }
-  onHandleSubmit(){
-    this.productService.update(this.products).subscribe(product=> {
-      console.log(product);
+  onHandleSubmit() {
+    this.productService.update(this.products).subscribe(products => {
+      console.log(products);
       confirm("Sua san pham thanh cong")
-      
     })
   }
 }

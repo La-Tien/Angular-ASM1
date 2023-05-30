@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IProduct } from 'src/app/interface/products';
-import { ProductService } from 'src/app/services/product.service';
+import { ProductsService } from 'src/app/Services/products.service';
+import { IProduct } from 'src/app/interface/product';
 
 @Component({
   selector: 'app-add-product',
@@ -8,17 +8,19 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent {
+
   products: IProduct = {
     name: "",
     price: 0
   }
-  constructor(private productService: ProductService,){}  
-  
-  onHandleSubmit(){
-    this.productService.update(this.products).subscribe(product=> {
+
+  constructor(private productService: ProductsService) {
+
+  }
+  onHandleSubmit() {
+    this.productService.add(this.products).subscribe(product => {
       console.log(product);
       confirm("Them san pham thanh cong")
-      
     })
   }
 }

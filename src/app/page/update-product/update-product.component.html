@@ -1,13 +1,12 @@
 <p>update-product works!</p>
 <div class="container">
     <form (ngSubmit)="onHandleSubmit()">
-        <div class="col-3">
-            <input type="text" name="name" class="form-control" ([ngModel])="products.name">
+        <div class="mb-3">
+            <input type="text" class="form-control" [(ngModel)]="products.name" name="name">
         </div>
-        <div class="col-3">
-            <input type="text" name="price" class="form-control" ([ngModel])="products.price">
+        <div class="mb-3">
+            <input type="text" class="form-control" [(ngModel)]="products.price" name="price">
         </div>
-        {{products | json}}
         <button class="btn btn-primary">Update</button>
     </form>
 </div>

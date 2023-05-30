@@ -1,6 +1,8 @@
-<p>product-list works!</p>
+
 <div class="container-admin">
-    {{title}}
+    <h1>{{title}}</h1>
+    <hr>
+    <button class="btn btn-outline-info" routerLink="add">Add</button>
     <table class="table table-border">
         <thead>
             <tr>
@@ -10,13 +12,15 @@
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody *ngIf="products && products.length">
+        <tbody *ngIf="products && products.length ">
             <tr *ngFor="let product of products; index as i">
-                <td>{{i+1}}</td>
+                <td>{{i + 1}}</td>
                 <td>{{product.name}}</td>
                 <td>{{product.price}}</td>
-                <td><button class="btn btn-danger" (click)="Remove(product.id)">Delete</button></td>
-                <td><button class="btn btn-danger" routerLink="{{product.id}}/edit">Edit</button></td>
+                <td>
+                    <button class="btn btn-outline-danger" (click)="Remove(product.id)">Delete</button>
+                    <button class="btn btn-outline-success" routerLink="{{product.id}}/edit">Update</button>
+                </td>
             </tr>
         </tbody>
     </table>
